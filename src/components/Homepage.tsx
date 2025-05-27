@@ -1,14 +1,14 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Article from "./Article";
 import { useEffect, useState } from "react";
-
-interface IArticle {
+import type { IArticle } from "../interfaces";
+/* interface Article {
   id: number;
   title: string;
   summary: string;
   url: string;
   image_url: string;
-}
+} */
 
 const Homepage = () => {
   const [articles, setArticles] = useState<IArticle[]>([]);
