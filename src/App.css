@@ -1,3 +1,16 @@
 body {
-  background-color: rgb(18, 18, 49);
+  background-color: rgb(11, 11, 26);
+}
+
+.cards {
+  background-color: #6b747c;
+  color: rgb(11, 11, 26);
+}
+
+.hover {
+  text-decoration: none;
+}
+
+.hover:hover {
+  text-decoration: underline;
 }

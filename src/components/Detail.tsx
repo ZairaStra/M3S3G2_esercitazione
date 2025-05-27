@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Spinner, Alert, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 interface IArticle {
   id: number;
@@ -43,12 +44,7 @@ const Detail = () => {
     <Container className="my-5">
       <Row className="justify-content-center my-4">
         <Col xs={12} sm={10} md={8}>
-          {loading && (
-            <div className="text-center my-5">
-              <Spinner animation="border" />
-              <p className="mt-2">Loading article...</p>
-            </div>
-          )}
+          {loading && <Spinner variant="secondary" animation="border" />}
 
           {error && showError && (
             <Alert variant="danger" dismissible onClose={() => setShowError(false)}>
@@ -57,17 +53,26 @@ const Detail = () => {
           )}
 
           {!loading && !error && article && (
-            <Card className="flex-row">
-              <Card.Img src={article.image_url} alt={article.title} style={{ width: "40%", objectFit: "cover" }} />
-              <Card.Body>
-                <Card.Title>{article.title}</Card.Title>
-                <Card.Text>{article.summary}</Card.Text>
-                <p className="text-muted">Published on: {new Date(article.published_at).toLocaleDateString()}</p>
-                <Button variant="primary" href={article.url} target="_blank" rel="noopener noreferrer">
-                  Read full article
-                </Button>
-              </Card.Body>
-            </Card>
+            <>
+              <h2 className="my-3 display-2 text-secondary">{article.title}</h2>
+              <h4 className="my-3 display-4 text-secondary"> - Details</h4>
+              <Card className="flex-row cards">
+                <Card.Img src={article.image_url} alt={article.title} style={{ width: "40%", objectFit: "cover" }} />
+                <Card.Body>
+                  <Card.Title>{article.title}</Card.Title>
+                  <Card.Text>{article.summary}</Card.Text>
+                  <p className="text-muted">Published on: {new Date(article.published_at).toLocaleDateString()}</p>
+                  <div className="d-flex justify-content-between">
+                    <Button variant="outline-light" href={article.url} target="_blank">
+                      Read full article
+                    </Button>
+                    <Link to="/">
+                      <Button variant="outline-light">Go Back to Homepage</Button>
+                    </Link>
+                  </div>
+                </Card.Body>
+              </Card>
+            </>
           )}
         </Col>
       </Row>
